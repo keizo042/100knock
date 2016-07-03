@@ -24,7 +24,7 @@ con (x, y) = (f "\t" x, f "\t" y)
 
 write :: (String, String) -> IO ()
 write (x,y) = do
-  writeFile "12_a.txt" x
-  writeFile "12_b.txt" y
+  writeFile "col1.txt" x
+  writeFile "col2.txt" y
 
 
