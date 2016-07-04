@@ -1,2 +1,4 @@
 *.o
 *.hi
+part2/col*.txt
+

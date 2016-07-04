@@ -9,17 +9,20 @@ main =  split <$> (getArgs >>= parse) >>= p
 
 parse :: [String] -> IO  (Int,String)
 parse []  = return (0,"")
-parse (x:y:_) = return (read x :: Int, x)
+parse (x:y:_) = do
+  d <- readFile y
+  return (read x :: Int , d)
 
 split :: (Int, String) -> [String]
-split (0, "") = []
-split (i,s) =  g $ f i $ words s
+-- split (0, "") = []
+split (i,s) =  g $ f $ words s
   where
-    f :: Int -> [String] -> [[String]]
-    f _ [] = []
-    f i s = h: f i d
+    len = length s `div` i
+    f :: [String] -> [[String]]
+    f [] = []
+    f s  = h : f d
       where
-        (h, d) = (take i s, drop i s)
+        (h, d) = (take len s, drop len s)
 
     g :: [[String]] -> [String]
     g [] = []
